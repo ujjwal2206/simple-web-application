@@ -1,0 +1,6 @@
+- hosts: staging
+  tasks:
+    - name: Copy HTML file to web server
+      copy:
+        src: /path/to/artifacts/index.html
+        dest: /var/www/html/
