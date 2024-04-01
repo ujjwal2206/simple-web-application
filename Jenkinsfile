@@ -1,27 +1,25 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Build') {
             steps {
-                // Build frontend artifacts
-                sh 'npm install'
-                sh 'npm run build'
-                // Build backend artifacts (assuming Maven)
-                sh 'mvn clean install'
+                // Clone repository
+                git 'https://github.com/yourusername/simple-web-app.git'
+                // Copy HTML file to artifact directory
+                sh 'cp index.html artifacts/'
             }
         }
         stage('Test') {
             steps {
-                // Execute unit tests for frontend and backend
-                sh 'npm test'
-                sh 'mvn test'
+                // Add script to check HTML validity
+                sh 'html-validator index.html'
             }
         }
         stage('Deploy') {
             steps {
-                // Deploy to staging environment
-                sh 'ansible-playbook deploy.yml -i inventory/staging'
+                // Example: Deploy to staging server using Ansible
+                ansiblePlaybook playbook: 'deploy.yml', inventory: 'inventory.ini'
             }
         }
     }
