@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Clone repository
-                git 'https://github.com/yourusername/simple-web-app.git'
+                git 'https://github.com/ujjwal2206/simple-web-application.git'
                 // Copy HTML file to artifact directory
                 sh 'cp index.html artifacts/'
             }
